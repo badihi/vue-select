@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <sandbox hide-help v-slot="config">
-      <v-select v-bind="config" />
+      <v-select v-bind="config" :grouped="true" group-label="label" group-list="list" />
     </sandbox>
   </div>
 </template>

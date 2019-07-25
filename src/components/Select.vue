@@ -5,7 +5,6 @@
 <template>
   <div :dir="dir" class="v-select" :class="stateClasses">
     <div ref="toggle" @mousedown.prevent="toggleDropdown" class="vs__dropdown-toggle">
-
       <div class="vs__selected-options" ref="selectedOptions">
         <slot v-for="option in selectedValue"
               name="selected-option-container"
@@ -53,22 +52,26 @@
     <transition :name="transition">
       <ul ref="dropdownMenu" v-if="dropdownOpen" class="vs__dropdown-menu" role="listbox" @mousedown="onMousedown" @mouseup="onMouseUp">
         <li
-          role="option"
-          v-for="(option, index) in filteredOptions"
-          :key="index"
-          class="vs__dropdown-option"
-          :class="{ 'vs__dropdown-option--selected': isOptionSelected(option), 'vs__dropdown-option--highlight': index === typeAheadPointer }"
-          @mouseover="typeAheadPointer = index"
-          @mousedown.prevent.stop="select(option)"
+            role="option"
+            v-for="(option, index) in filteredOptions"
+            :key="index"
+            class="vs__dropdown-option"
+            :class="{
+                'vs__dropdown-option--selected': isOptionSelected(option),
+                'vs__dropdown-option--highlight': index === typeAheadPointer && !option.header,
+                'vs__dropdown-option--header': !!option.header
+            }"
+            @mouseover="typeAheadPointer = index"
+            @mousedown.prevent.stop="select(option)"
         >
-          <slot name="option" v-bind="normalizeOptionForSlot(option)">
-            {{ getOptionLabel(option) }}
-          </slot>
+            <slot name="option" v-bind="normalizeOptionForSlot(option)">
+                {{ getOptionLabel(option) }}
+            </slot>
         </li>
         <li v-if="!filteredOptions.length" class="vs__no-options" @mousedown.stop="">
-          <slot name="no-options">Sorry, no matching options.</slot>
+            <slot name="no-options">Sorry, no matching options.</slot>
         </li>
-      </ul>
+    </ul>
     </transition>
   </div>
 </template>
@@ -341,7 +344,7 @@
             if (typeof label === 'number') {
               label = label.toString()
             }
-            return this.filterBy(option, label, search)
+            return this.filterBy(option, label, search) && !option.header;
           });
         }
       },
@@ -421,6 +424,36 @@
       searchInputQuerySelector: {
         type: String,
         default: '[type=search]'
+      },
+
+      /**
+       * Indicates that options are grouped or not
+       *
+       * @type {Boolean}
+       */
+      grouped: {
+        type: Boolean,
+        default: false
+      },
+
+      /**
+       * Specifies the field containing the group of the label
+       *
+       * @type {String}
+       */
+      groupLabel: {
+        type: String,
+        default: 'label'
+      },
+
+      /**
+       * Specifies the field containing the group of the label
+       *
+       * @type {String}
+       */
+      groupList: {
+        type: String,
+        default: 'list'
       }
     },
 
@@ -478,6 +511,8 @@
        * @return {void}
        */
       select(option) {
+        if (option.header)
+            return;
         if (!this.isOptionSelected(option)) {
           if (this.taggable && !this.optionExists(option)) {
             option = this.createOption(option)
@@ -979,7 +1014,20 @@
        * @return {array}
        */
       filteredOptions() {
-        const optionList = [].concat(this.optionList);
+        let optionList = [];   
+        if (this.grouped) {
+            this.optionList.forEach(group => {
+                optionList.push({
+                    header: true,
+                    [this.label]: group[this.groupLabel]
+                });
+                group[this.groupList].forEach(item => {
+                    optionList.push(item);
+                });
+            });
+        } else {
+            optionList = [].concat(this.optionList);
+        }
 
         if (!this.filterable && !this.taggable) {
           return optionList;

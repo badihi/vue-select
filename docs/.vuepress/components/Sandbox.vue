@@ -169,7 +169,38 @@ import countries from '../data/countryCodes';
 import books from '../data/books';
 
 const defaultConfig = () => ({
-  options: countries,
+  options: [
+      {
+          label: 'Group 1',
+          list: [
+              'Hello',
+              'Hello',
+              'Hello',
+              'Hello',
+              'Hello'
+          ]
+      },
+      {
+          label: 'Group 2',
+          list: [
+              'Hello',
+              'Hello',
+              'Hello',
+              'Hello',
+              'Hello'
+          ]
+      },
+      {
+          label: 'Group 3',
+          list: [
+              'Hello',
+              'Hello',
+              'Hello',
+              'Hello',
+              'Hello'
+          ]
+      },
+  ],
   multiple: false,
   dir: 'ltr',
   clearable: true,

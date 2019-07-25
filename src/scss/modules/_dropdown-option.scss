@@ -16,3 +16,10 @@
   background: $vs-state-active-bg;
   color: $vs-state-active-color;
 }
+
+.vs__dropdown-option--header {
+    color: gray;
+    font-size: 12px;
+    cursor: default;
+    margin-left: -10px;
+}
