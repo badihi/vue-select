@@ -171,33 +171,33 @@ import books from '../data/books';
 const defaultConfig = () => ({
   options: [
       {
-          label: 'Group 1',
-          list: [
-              'Hello',
-              'Hello',
-              'Hello',
-              'Hello',
-              'Hello'
+          myLabel: 'Group 1',
+          myList: [
+              { title: 'Hello' },
+              { title: 'Hello' },
+              { title: 'Hello' },
+              { title: 'Hello' },
+              { title: 'Hello' },
           ]
       },
       {
-          label: 'Group 2',
-          list: [
-              'Hello',
-              'Hello',
-              'Hello',
-              'Hello',
-              'Hello'
+          myLabel: 'Group 2',
+          myList: [
+              { title: 'Hello' },
+              { title: 'Hello' },
+              { title: 'Hello' },
+              { title: 'Hello' },
+              { title: 'Hello' },
           ]
       },
       {
-          label: 'Group 3',
-          list: [
-              'Hello',
-              'Hello',
-              'Hello',
-              'Hello',
-              'Hello'
+          myLabel: 'Group 3',
+          myList: [
+              { title: 'Hello' },
+              { title: 'Hello' },
+              { title: 'Hello' },
+              { title: 'Hello' },
+              { title: 'Hello' },
           ]
       },
   ],
