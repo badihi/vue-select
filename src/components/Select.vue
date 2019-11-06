@@ -1019,7 +1019,7 @@
             this.optionList.forEach(group => {
                 optionList.push({
                     header: true,
-                    highlighted: this.highlighted,
+                    highlighted: group.highlighted,
                     [this.label]: group[this.groupLabel]
                 });
                 group[this.groupList].forEach(item => {
