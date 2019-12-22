@@ -1,7 +1,7 @@
 export default {
   watch: {
     typeAheadPointer() {
-      this.maybeAdjustScroll();
+    //   this.maybeAdjustScroll();
     }
   },
 
