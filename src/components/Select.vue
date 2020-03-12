@@ -81,7 +81,7 @@
                 'vs__dropdown-option--selected': isOptionSelected(option),
                 'vs__dropdown-option--highlight': index === typeAheadPointer && !option.header,
                 'vs__dropdown-option--header': !!option.header,
-                ...option.class
+                ...prepareClasses(option.class)
             }"
 					@mouseover="typeAheadPointer = index"
 					@mousedown.prevent.stop="select(option)"
@@ -1093,14 +1093,9 @@ export default {
 					optionList.push({
 						header: true,
 						highlighted: group.highlighted,
-						[this.label]: group[this.groupLabel],
-						class: this.prepareClasses(group.class)
+						[this.label]: group[this.groupLabel]
 					});
 					group[this.groupList].forEach(item => {
-						item.class = {
-                            ...this.prepareClasses(group.class), 
-                            ...this.prepareClasses(item.class)
-                        };
 						optionList.push(item);
 					});
 				});

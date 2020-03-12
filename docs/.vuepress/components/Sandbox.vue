@@ -178,19 +178,17 @@ const defaultConfig = () => ({
               { title: 'Hello', class: 'cls1-1' },
               { title: 'Hello', class: 'cls1-1' },
               { title: 'Hello', class: 'cls1-1' },
-          ],
-          class: 'cls1'
+          ]
       },
       {
           myLabel: 'Group 2',
           myList: [
               { title: 'Hello', class: 'cls2-1' },
+              { title: 'Hello', class: 'cls2-1' },
               { title: 'Hello' },
               { title: 'Hello' },
               { title: 'Hello' },
-              { title: 'Hello' },
-          ],
-          class: 'cls2'
+          ]
       },
       {
           myLabel: 'Group 3',
@@ -200,8 +198,7 @@ const defaultConfig = () => ({
               { title: 'Hello' },
               { title: 'Hello' },
               { title: 'Hello' },
-          ],
-          class: 'cls3'
+          ]
       },
   ],
   multiple: false,
