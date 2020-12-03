@@ -4,6 +4,7 @@
 
 <template>
 	<div :dir="dir" class="v-select" :class="stateClasses">
+		<slot name="header" />
 		<div ref="toggle" @mousedown.prevent="toggleDropdown" class="vs__dropdown-toggle">
 			<div class="vs__selected-options" ref="selectedOptions">
 				<slot
