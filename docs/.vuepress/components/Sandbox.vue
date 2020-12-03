@@ -178,7 +178,8 @@ const defaultConfig = () => ({
               { title: 'Hello', class: 'cls1-1' },
               { title: 'Hello', class: 'cls1-1' },
               { title: 'Hello', class: 'cls1-1' },
-          ]
+		  ],
+		  class: 'cls1-1'
       },
       {
           myLabel: 'Group 2',

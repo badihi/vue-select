@@ -1093,7 +1093,8 @@ export default {
 					optionList.push({
 						header: true,
 						highlighted: group.highlighted,
-						[this.label]: group[this.groupLabel]
+						[this.label]: group[this.groupLabel],
+						// class: group.class
 					});
 					group[this.groupList].forEach(item => {
 						optionList.push(item);
