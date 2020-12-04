@@ -514,6 +514,19 @@ export default {
 		 */
 		multiple() {
 			this.clearSelection();
+		},
+
+
+		/**
+		 * Fire an event when dropdown state changes
+		 * @return {void}
+		 */
+		dropdownOpen(val) {
+			if (val) {
+				this.$emit('open');
+			} else {
+				this.$emit('close');
+			}
 		}
 	},
 

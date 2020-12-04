@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <sandbox hide-help v-slot="config">
-      <v-select v-bind="config" :grouped="true" group-label="myLabel" group-list="myList" label="title" />
+      <v-select v-bind="config" :grouped="true" group-label="myLabel" group-list="myList" label="title" @open="open" @close="close" />
     </sandbox>
   </div>
 </template>
@@ -14,6 +14,14 @@ import Sandbox from '../docs/.vuepress/components/Sandbox';
 
 export default {
   components: {Sandbox, vSelect},
+  methods: {
+	  open() {
+		console.log('open');
+	  },
+	  close() {
+		console.log('close');
+	  }
+  }
 };
 </script>
 
