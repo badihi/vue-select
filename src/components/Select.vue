@@ -563,6 +563,7 @@ export default {
 				}
 				this.updateValue(option);
 			}
+			this.$emit('option:select');
 
 			this.onAfterSelect(option);
 		},
